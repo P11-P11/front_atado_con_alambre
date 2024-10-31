@@ -1,15 +1,18 @@
 <div class="container">
     <div class="restaurantesContainer">
+        
         <div class="listaRestaurantes"> 
-            @for (restaurant of restaurantes; track restaurant.nombre) {
-                <li>{{ restaurant.nombre }} <br> 
-                {{restaurant.numero}} </li>
-                } @empty {
-                <li>There are no items.</li>
-                }
+            @for (restaurant of restaurantes; track restaurant.name) {
+                <li (click)="seleccionarRestaurante(restaurant)"> 
+                    <item-restaurant [nombre]="restaurant.name" [numero]="restaurant.number"> </item-restaurant>
+                </li>
+            } @empty {
+            <li>There are no items.</li>
+            }
         </div>
+        
         <div class="mapa"> 
-            <mapa-restaurants> </mapa-restaurants>
+            <mapa-restaurants [restaurantes]="restaurantes" [restauranteSeleccionado]="restauranteSeleccionado"> </mapa-restaurants>
         </div>
     </div>
 </div>

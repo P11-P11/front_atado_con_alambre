@@ -1,5 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import * as L from 'leaflet';
+
+interface Restaurante {
+  name: string;
+  number: string;
+  location: {
+    latitude: number;
+    longitude: number;
+  };
+}
 
 @Component({
   selector: 'mapa-restaurants',
@@ -8,7 +17,12 @@ import * as L from 'leaflet';
   styleUrls: ['./mapa-restaurants.component.css']
 })
 export class MapaRestaurantsComponent implements OnInit {
+
+  @Input() restaurantes: Restaurante[] = [];
+  @Input() restauranteSeleccionado?: Restaurante;
+
   map: any;
+  markers: Map<string, L.Marker> = new Map();
 
   ngOnInit(): void {
     // Inicializar el mapa centrado en Buenos Aires (latitud y longitud)
@@ -20,20 +34,26 @@ export class MapaRestaurantsComponent implements OnInit {
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(this.map);
 
-    // Agregar un marcador de ejemplo en Buenos Aires
-    const marker = L.marker([-34.6037, -58.3816]).addTo(this.map)
-      .bindPopup('<b>Local de comida</b><br>Dirección: Obelisco.')
-      .openPopup();
-    
-      /*
-    // Manejar clics en el mapa para agregar nuevos marcadores
-    this.map.on('click', (e: any) => {
-      const latLng = e.latlng;
-      const newMarker = L.marker([latLng.lat, latLng.lng]).addTo(this.map)
-        .bindPopup('Nuevo local de comida')
-        .openPopup();
+   
+    this.restaurantes.forEach(rest => {
+      const popupContent = `<b>${rest.name}</b><br>${rest.number}`;
+      const marker = L.marker([rest.location.latitude, rest.location.longitude]).addTo(this.map)
+      .bindPopup(popupContent);
+      this.markers.set(rest.name, marker);
     });
-    
-    */
-  }
+  };
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['restauranteSeleccionado'] && this.restauranteSeleccionado) {
+      // Centrar el mapa en el restaurante seleccionado
+      this.map.setView([this.restauranteSeleccionado.location.latitude, 
+                        this.restauranteSeleccionado.location.longitude],15);
+      const marker = this.markers.get(this.restauranteSeleccionado.name);
+      if (marker) {
+        setTimeout(() => {
+          marker.openPopup();
+        }, 300);
+      }
+    }
+  };
 }
