@@ -35,16 +35,11 @@ export class MapaRestaurantsComponent implements OnInit {
     }).addTo(this.map);
 
    
-    this.restaurantes.forEach(rest => {
-      const popupContent = `<b>${rest.name}</b><br>${rest.number}`;
-      const marker = L.marker([rest.location.latitude, rest.location.longitude]).addTo(this.map)
-      .bindPopup(popupContent);
-      this.markers.set(rest.name, marker);
-    });
+    
   };
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['restauranteSeleccionado'] && this.restauranteSeleccionado) {
+    if(changes['restauranteSeleccionado'] && this.restauranteSeleccionado) {
       // Centrar el mapa en el restaurante seleccionado
       this.map.setView([this.restauranteSeleccionado.location.latitude, 
                         this.restauranteSeleccionado.location.longitude],15);
@@ -54,6 +49,14 @@ export class MapaRestaurantsComponent implements OnInit {
           marker.openPopup();
         }, 300);
       }
+    }
+    if(changes['restaurantes']) {
+      this.restaurantes.forEach(rest => {
+        const popupContent = `<b>${rest.name}</b><br>${rest.number}`;
+        const marker = L.marker([rest.location.latitude, rest.location.longitude]).addTo(this.map)
+        .bindPopup(popupContent);
+        this.markers.set(rest.name, marker);
+      });
     }
   };
 }
