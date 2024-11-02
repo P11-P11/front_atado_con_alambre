@@ -1,0 +1,13 @@
+<form (ngSubmit)="submitForm()" [formGroup]="restauranteForm">
+    <label for="name">Nombre del Restaurante:</label>
+    <input id="name" formControlName="name" required />
+  
+    <label for="number">Número de Contacto:</label>
+    <input id="number" formControlName="number" required />
+  
+    <label for="images">URLs de Imágenes (separadas por comas):</label>
+    <input id="images" formControlName="images" required />
+  
+    <button type="submit">Agregar Restaurante</button>
+</form>
+  

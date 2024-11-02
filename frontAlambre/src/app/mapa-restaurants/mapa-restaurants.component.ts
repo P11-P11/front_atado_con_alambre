@@ -34,9 +34,26 @@ export class MapaRestaurantsComponent implements OnInit {
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(this.map);
 
-   
-    
   };
+
+  centrarEnUbicacionUsuario(): void {
+    navigator.geolocation.getCurrentPosition(position => {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+      this.map.setView([lat, lon]); // Centrar el mapa en la ubicación del usuario
+    }, () => {
+      alert('No se pudo obtener la ubicación.');
+    });
+  }
+
+  mostrarRestaurantes(): void {
+    this.restaurantes.forEach(rest => {
+      const popupContent = `<b>${rest.name}</b><br>${rest.number}`;
+      const marker = L.marker([rest.location.latitude, rest.location.longitude]).addTo(this.map)
+      .bindPopup(popupContent);
+      this.markers.set(rest.name, marker);
+    });
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if(changes['restauranteSeleccionado'] && this.restauranteSeleccionado) {
@@ -51,12 +68,7 @@ export class MapaRestaurantsComponent implements OnInit {
       }
     }
     if(changes['restaurantes']) {
-      this.restaurantes.forEach(rest => {
-        const popupContent = `<b>${rest.name}</b><br>${rest.number}`;
-        const marker = L.marker([rest.location.latitude, rest.location.longitude]).addTo(this.map)
-        .bindPopup(popupContent);
-        this.markers.set(rest.name, marker);
-      });
+      this.mostrarRestaurantes();
     }
   };
 }

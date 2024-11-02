@@ -32,10 +32,15 @@
     display: flex;               /* Activa flexbox para la alineación horizontal */
     justify-content: flex-end;   /* Alinea los botones a la derecha */
     gap: 20px;                   /* Espacio entre los botones */
-    padding-right: 20px; 
+    padding-right: 20px;
+    align-items: center; 
+    gap: 20px;
+    padding: 10px 20px;      /* Ajusta el padding para un tamaño más compacto */
+    height: auto;            /* Asegura que el contenedor solo ocupe el espacio necesario */
+    box-sizing: border-box;
 }
     
 .botones button {
-    padding: 15px;
+    padding: 10px 15px;
     margin: 0;
 }

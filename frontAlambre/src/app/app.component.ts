@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { VistaDefaultComponent } from './vista-default/vista-default.component';
 
+
 @Component({
   selector: 'app-root',
   standalone: true,

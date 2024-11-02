@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MapaRestaurantsComponent } from '../mapa-restaurants/mapa-restaurants.component';
 import { ItemRestaurantComponent } from '../item-restaurant/item-restaurant.component';
 
@@ -151,5 +151,11 @@ export class VistaUserComponent {
         }
       }
     ];
+  }
+
+  @ViewChild(MapaRestaurantsComponent) mapaRestaurantsComponent!: MapaRestaurantsComponent;
+
+  centrar(): void {
+    this.mapaRestaurantsComponent.centrarEnUbicacionUsuario();
   }
 }
