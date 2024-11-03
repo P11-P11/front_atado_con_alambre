@@ -1,14 +1,6 @@
 import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import * as L from 'leaflet';
-
-interface Restaurante {
-  name: string;
-  number: string;
-  location: {
-    latitude: number;
-    longitude: number;
-  };
-}
+import { RestauranteInput } from '../models/models';
 
 @Component({
   selector: 'mapa-restaurants',
@@ -18,8 +10,8 @@ interface Restaurante {
 })
 export class MapaRestaurantsComponent implements OnInit {
 
-  @Input() restaurantes: Restaurante[] = [];
-  @Input() restauranteSeleccionado?: Restaurante;
+  @Input() restaurantes: RestauranteInput[] = [];
+  @Input() restauranteSeleccionado?: RestauranteInput;
 
   map: any;
   markers: Map<string, L.Marker> = new Map();
