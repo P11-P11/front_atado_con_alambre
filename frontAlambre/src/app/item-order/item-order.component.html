@@ -1,0 +1,19 @@
+<div class="order-item">
+    <div class="order-info">
+        <span>ID: {{ datos.id }}</span>
+        <span>Mesa: {{ datos.tableNumber }}</span>
+        <span>Estado: {{ datos.status }}</span>
+    </div>
+    
+    <div class="order-actions">
+        <select [(ngModel)]="selectedStatus">
+            @for (status of statusOptions; track $index) {
+                <option [value]="status">{{ status }}</option>
+            }
+          </select>
+          
+          <button (click)="updateStatus()">Update Status</button>
+    </div>
+  </div>
+
+  

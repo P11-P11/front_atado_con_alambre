@@ -4,3 +4,24 @@ label {
 li p {
     color: white;
 }
+.statusContainer {
+    max-height: 300px; /* Ajusta la altura máxima según tus necesidades */
+    max-width: 60%;
+    overflow-y: auto; /* Activa el scroll vertical cuando el contenido excede el alto máximo */
+    padding: 10px;
+    border: 1px solid #ddd; /* Borde opcional para destacar el contenedor */
+    margin-top: 15px;
+    border-radius: 5px;
+}
+  
+.statusContainer p {
+    font-weight: bold;
+    margin: 0;
+    padding-bottom: 5px; /* Espacio entre el título y la lista de pedidos */
+}
+  
+.statusContainer li {
+    list-style-type: none; /* Quita los puntos de la lista */
+    margin-bottom: 10px; /* Espacio entre los elementos de la lista */
+}
+  

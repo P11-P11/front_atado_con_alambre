@@ -11,11 +11,22 @@
     <button type="submit">Ver estado</button>
 
 </form>   
+<p> PEDIDOS ONLINE: </p>
 <div class="statusContainer">
-
-    @for (order of orders; track order.id) {
+    @for (order of onlineOrders; track order.id) {
         <li>
-            <p> PEDIDO CON ID: {{order.id}} </p>
+            <item-order [datos]="order" (statusUpdated)="updateOrderStatus(restauranteID, $event.orderId, $event.newStatus)"> </item-order>
+        </li>
+    } @empty {
+        <li> Este restaurante no tiene pedidos registrados</li>
+    }
+
+</div>
+<p> PEDIDOS EN EL RESTAURANTE: </p>
+<div class="statusContainer">
+    @for (order of tableOrders; track order.id) {
+        <li>
+            <item-order [datos]="order" (statusUpdated)="updateOrderStatus(restauranteID, $event.orderId, $event.newStatus)"> </item-order>
         </li>
     } @empty {
         <li> Este restaurante no tiene pedidos registrados</li>

@@ -1,0 +1,50 @@
+.order-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    border-radius: 8px;
+    background-color: #cc5500; /* Naranja oscuro */
+    color: white;
+    justify-content: space-between; /* Esto asegura que los elementos se distribuyan entre los extremos */
+    
+}
+
+.order-info {
+    display: flex;
+    gap: 10px; /* Espacio entre ID, número de mesa y estado */
+    margin-right: 15px; /* Espacio entre el texto y las acciones */
+    flex-grow: 1; /* Esto hace que esta parte ocupe todo el espacio disponible a la izquierda */
+}
+
+.order-info p {
+    margin: 0;
+}
+
+.order-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espacio entre el select y el botón */
+    justify-content: flex-end; /* Empuja los elementos hacia la derecha */
+}
+
+.order-actions select {
+    padding: 5px;
+    border-radius: 4px;
+    border: none;
+}
+
+.order-actions button {
+    padding: 5px 10px;
+    border: none;
+    background-color: #444; /* Gris oscuro */
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.order-actions button:hover {
+    background-color: #222; /* Gris más oscuro */
+}
