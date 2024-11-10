@@ -6,6 +6,8 @@ export class RestauranteInput {
 
         public location: Coordinate,
 
+        public logoUrl: string,
+
         public images: string[],  
 
         public menu: MenuItem[],
@@ -17,18 +19,24 @@ export class RestauranteInput {
 export class Restaurante {
     constructor(
 
-        public id: string,
+        public id: number,
 
         public name: string,
         public number: string,
 
         public location: Coordinate,
 
+        public logoUrl: string,
+
         public images: string[],  
+        
+        public openingTime: string,
+        public closingTime: string,
 
         public menu: MenuItem[],
+        public orders: Order[],
 
-        public numberOfTables: number
+        public tableOrders: Map<Number, Number>
     ) {}
 }
 
@@ -48,16 +56,26 @@ export class Coordinate {
 
 export class Order {
     constructor(
-        public id: string,
+        public id: number,
         public items: OrderItem[],
         public status: OrderStatus,
-        public customerID?: string | null, 
-        public tableID?: string | null
+        public tableNumber: number
     ) {}
 }
 
 export class OrderItem {
+    constructor(
+        public menuItem: MenuItem, 
+        public quantity: number
+    ) {}
+}
 
+export class OrderInput {
+    constructor(
+        public tableNumber: number,
+        public items: OrderItem[],
+        public userLocation: Coordinate
+    ) {}
 }
 
 export enum OrderStatus {

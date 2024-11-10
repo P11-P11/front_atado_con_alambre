@@ -8,6 +8,7 @@ export const exampleRestaurantes: RestauranteInput[] = [
         latitude: -34.6037,
         longitude: -58.3816
       },
+      logoUrl: "asdasd",
       images: ["imagen1.jpg", "imagen2.jpg", "imagen3.jpg"],
       menu: [
         { item: "Bife de chorizo", price: 15 },
@@ -23,6 +24,7 @@ export const exampleRestaurantes: RestauranteInput[] = [
         latitude: -34.6050,
         longitude: -58.3835
       },
+      logoUrl: "asdasd",
       images: ["imagen1.jpg", "imagen2.jpg"],
       menu: [
         { item: "Milanesa", price: 12 },
@@ -38,6 +40,7 @@ export const exampleRestaurantes: RestauranteInput[] = [
         latitude: -34.6083,
         longitude: -58.3700
       },
+      logoUrl: "asdasd",
       images: ["imagen1.jpg", "imagen2.jpg", "imagen3.jpg"],
       menu: [
         { item: "Quiche Lorraine", price: 8 },
@@ -53,6 +56,7 @@ export const exampleRestaurantes: RestauranteInput[] = [
         latitude: -34.6012,
         longitude: -58.3860
       },
+      logoUrl: "asdasd",
       images: ["imagen1.jpg", "imagen2.jpg"],
       menu: [
         { item: "Café con leche", price: 3 },
@@ -68,6 +72,7 @@ export const exampleRestaurantes: RestauranteInput[] = [
         latitude: -34.6104,
         longitude: -58.3755
       },
+      logoUrl: "asdasd",
       images: ["imagen1.jpg", "imagen2.jpg", "imagen3.jpg"],
       menu: [
         { item: "Asado", price: 16 },
@@ -83,6 +88,7 @@ export const exampleRestaurantes: RestauranteInput[] = [
         latitude: -34.6055,
         longitude: -58.3721
       },
+      logoUrl: "asdasd",
       images: ["imagen1.jpg", "imagen2.jpg"],
       menu: [
         { item: "Pasta Alfredo", price: 10 },
@@ -98,6 +104,7 @@ export const exampleRestaurantes: RestauranteInput[] = [
         latitude: -34.6142,
         longitude: -58.3623
       },
+      logoUrl: "asdasd",
       images: ["imagen1.jpg", "imagen2.jpg", "imagen3.jpg"],
       menu: [
         { item: "Tarta de jamón y queso", price: 8 },
@@ -113,6 +120,7 @@ export const exampleRestaurantes: RestauranteInput[] = [
         latitude: -34.6091,
         longitude: -58.3776
       },
+      logoUrl: "asdasd",
       images: ["imagen1.jpg", "imagen2.jpg"],
       menu: [
         { item: "Tapas variadas", price: 10 },
@@ -128,6 +136,7 @@ export const exampleRestaurantes: RestauranteInput[] = [
         latitude: -34.5837,
         longitude: -58.4232
       },
+      logoUrl: "asdasd",
       images: ["imagen1.jpg", "imagen2.jpg", "imagen3.jpg"],
       menu: [
         { item: "Entraña", price: 13 },
@@ -143,6 +152,7 @@ export const exampleRestaurantes: RestauranteInput[] = [
         latitude: -34.6121,
         longitude: -58.3832
       },
+      logoUrl: "asdasd",
       images: ["imagen1.jpg", "imagen2.jpg"],
       menu: [
         { item: "Empanadas", price: 4 },
@@ -158,6 +168,7 @@ export const exampleRestaurantes: RestauranteInput[] = [
         latitude: -34.6215,
         longitude: -58.3708
       },
+      logoUrl: "asdasd",
       images: ["imagen1.jpg", "imagen2.jpg", "imagen3.jpg"],
       menu: [
         { item: "Bondiola a la cerveza", price: 15 },
@@ -173,6 +184,7 @@ export const exampleRestaurantes: RestauranteInput[] = [
         latitude: -34.6137,
         longitude: -58.3824
       },
+      logoUrl: "asdasd",
       images: ["imagen1.jpg", "imagen2.jpg"],
       menu: [
         { item: "Empanada de carne", price: 4 },
@@ -188,6 +200,7 @@ export const exampleRestaurantes: RestauranteInput[] = [
         latitude: -34.6061,
         longitude: -58.3799
       },
+      logoUrl: "asdasd",
       images: ["imagen1.jpg", "imagen2.jpg", "imagen3.jpg"],
       menu: [
         { item: "Pizza Margherita", price: 8 },
@@ -203,6 +216,7 @@ export const exampleRestaurantes: RestauranteInput[] = [
         latitude: -34.5872,
         longitude: -58.4298
       },
+      logoUrl: "asdasd",
       images: ["imagen1.jpg", "imagen2.jpg"],
       menu: [
         { item: "Costillas de cerdo", price: 15 },
@@ -218,6 +232,7 @@ export const exampleRestaurantes: RestauranteInput[] = [
         latitude: -34.6129,
         longitude: -58.3920
       },
+      logoUrl: "asdasd",
       images: ["imagen1.jpg", "imagen2.jpg", "imagen3.jpg"],
       menu: [
         { item: "Provoleta", price: 5 },

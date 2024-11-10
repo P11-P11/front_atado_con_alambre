@@ -22,6 +22,7 @@ export class RestauranteFormComponent {
       location: [''],
       number: [''],
       images: [''],
+      logoUrl: [''],
       menu: [''],
       numberOfTables: ['']
     });
@@ -33,11 +34,12 @@ export class RestauranteFormComponent {
       formValue.name,
       formValue.number,
       this.parseLocation(formValue.location),
+      formValue.logoUrl,
       formValue.images.split(','), // Convierte la cadena en un array
       this.parseMenu(formValue.menu),
       formValue.numberOfTables
     );
-    // console.log(newRestaurante); // Luego, manda este objeto a la API
+    console.log(newRestaurante); // Luego, manda este objeto a la API
     this.enviarRestaurante(newRestaurante);
     setTimeout(() => {
       this.router.navigate(['/admin']);

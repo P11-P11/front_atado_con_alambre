@@ -3,3 +3,22 @@
 <a style="color: red" routerLink="/admin/submit" routerLinkActive="active" ariaCurrentWhenActive="page"> Agregar un restaurante al sistema</a>
 
 <p> y aca verias EL ESTADO DE TU RESTAURANTE </p>
+<form (ngSubmit)="submitForm()" [formGroup]="restauranteIDForm">
+
+    <label for="idRestaurante">ID del restaurante:</label>
+    <input id="idRestaurante" formControlName="idRestaurante" required />+
+    
+    <button type="submit">Ver estado</button>
+
+</form>   
+<div class="statusContainer">
+
+    @for (order of orders; track order.id) {
+        <li>
+            <p> PEDIDO CON ID: {{order.id}} </p>
+        </li>
+    } @empty {
+        <li> Este restaurante no tiene pedidos registrados</li>
+    }
+
+</div>
