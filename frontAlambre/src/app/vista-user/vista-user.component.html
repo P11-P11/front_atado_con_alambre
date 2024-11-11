@@ -4,10 +4,10 @@
         <div class="listaRestaurantes"> 
             @for (restaurant of restaurantes; track restaurant.name) {
                 <li (click)="seleccionarRestaurante(restaurant)"> 
-                    <item-restaurant [nombre]="restaurant.name" [numero]="restaurant.number"> </item-restaurant>
+                    <item-restaurant [datos]="restaurant"> </item-restaurant>
                 </li>
             } @empty {
-            <li>There are no items.</li>
+            <li><p style="color: #cc5500; font-size: 20px"> Ningún restaurante coincide con los filtros </p></li>
             }
         </div>
         
@@ -17,7 +17,7 @@
         <div class="botones"> 
             <button (click)="centrar()"> Centrar en ubicación </button>
             <button (click)="buscarRestaurantes()"> Buscar todos los restaurantes </button>
-            <button> Buscar restaurantes cercanos </button>
+            <button (click)="buscarRestaurantesCercanos()"> Buscar restaurantes cercanos </button>
         </div>
     </div>
 </div>

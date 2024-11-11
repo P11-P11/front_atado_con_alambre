@@ -10,33 +10,34 @@
     height: 80vh;
     width: 80vw;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(7, 1fr);
     gap: 8px;
     margin: auto;
 }
     
 .listaRestaurantes { 
+    grid-column: span 2 / span 2;
     grid-row: span 6 / span 6;
-    background-color: aquamarine;
+    
     overflow-y: auto;
 }
 .mapa { 
-    grid-column: span 4 / span 4;
+    grid-column: span 5 / span 5;
     grid-row: span 6 / span 6;
 }
 .botones {
-    grid-column: span 5 / span 5;
+    grid-column: span 7 / span 7;
     grid-row-start: 7;
-    background-color: red;
-    display: flex;               /* Activa flexbox para la alineación horizontal */
-    justify-content: flex-end;   /* Alinea los botones a la derecha */
-    gap: 20px;                   /* Espacio entre los botones */
+    
+    display: flex;               
+    justify-content: flex-end;   
+    gap: 20px;                   
     padding-right: 20px;
     align-items: center; 
     gap: 20px;
-    padding: 10px 20px;      /* Ajusta el padding para un tamaño más compacto */
-    height: auto;            /* Asegura que el contenedor solo ocupe el espacio necesario */
+    padding: 10px 20px;      
+    height: auto;            
     box-sizing: border-box;
 }
     

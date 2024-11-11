@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Restaurante } from '../models/models';
 
 @Component({
   selector: 'item-restaurant',
@@ -8,6 +9,5 @@ import { Component, Input } from '@angular/core';
   styleUrl: './item-restaurant.component.css'
 })
 export class ItemRestaurantComponent {
-  @Input() nombre = "";
-  @Input() numero = "";
+  @Input() datos!: Restaurante;
 }

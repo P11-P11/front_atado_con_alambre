@@ -1,8 +1,8 @@
 import { Component, ViewChild, Injectable } from '@angular/core';
 import { MapaRestaurantsComponent } from '../mapa-restaurants/mapa-restaurants.component';
 import { ItemRestaurantComponent } from '../item-restaurant/item-restaurant.component';
-import { RestauranteInput } from '../models/models';
-import { exampleRestaurantes } from '../models/examples';
+import { Restaurante, RestauranteInput } from '../models/models';
+import { exampleRestaurantes, exampleRestaurantesInput } from '../models/examples';
 import { Environment } from '../env/environment';
 import { HttpClient } from '@angular/common/http';
 
@@ -18,23 +18,40 @@ export class VistaUserComponent {
 
   constructor(private http: HttpClient) { }
 
-  restaurantes: RestauranteInput[] = [];
+  restaurantes: Restaurante[] = [];
   
-  restauranteSeleccionado?: RestauranteInput;
+  restauranteSeleccionado?: Restaurante;
 
-  seleccionarRestaurante(restaurant: RestauranteInput): void {
+  seleccionarRestaurante(restaurant: Restaurante): void {
     this.restauranteSeleccionado = restaurant;
   }
 
   buscarRestaurantes(): void {
     if(Environment.conectadoApi) {
-
-      this.http.get<RestauranteInput[]>(Environment.apiUrl + '/restaurants').subscribe(data =>
-        console.log(data)
+      const url = `${Environment.apiUrl}/restaurants`;
+      this.http.get<Restaurante[]>(url).subscribe(data =>
+        this.restaurantes = data
       );
     } else {
       this.restaurantes = exampleRestaurantes;
     }  
+  }
+
+  buscarRestaurantesCercanos(): void {
+
+    navigator.geolocation.getCurrentPosition(position => {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+      if(Environment.conectadoApi) {
+        const url = `${Environment.apiUrl}/restaurants?latitude=${lat}&longitude=${lon}`;
+        this.http.get<Restaurante[]>(url).subscribe(data =>
+          this.restaurantes = data
+        );
+      }
+    }, () => {
+      alert('No se pudo obtener la ubicación.');
+    });
+    
   }
 
   @ViewChild(MapaRestaurantsComponent) mapaRestaurantsComponent!: MapaRestaurantsComponent;

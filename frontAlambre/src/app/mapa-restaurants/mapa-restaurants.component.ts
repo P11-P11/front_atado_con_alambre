@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import * as L from 'leaflet';
-import { RestauranteInput } from '../models/models';
+import { Restaurante, RestauranteInput } from '../models/models';
 
 @Component({
   selector: 'mapa-restaurants',
@@ -10,8 +10,8 @@ import { RestauranteInput } from '../models/models';
 })
 export class MapaRestaurantsComponent implements OnInit {
 
-  @Input() restaurantes: RestauranteInput[] = [];
-  @Input() restauranteSeleccionado?: RestauranteInput;
+  @Input() restaurantes: Restaurante[] = [];
+  @Input() restauranteSeleccionado?: Restaurante;
 
   map: any;
   markers: Map<string, L.Marker> = new Map();
@@ -40,7 +40,7 @@ export class MapaRestaurantsComponent implements OnInit {
 
   mostrarRestaurantes(): void {
     this.restaurantes.forEach(rest => {
-      const popupContent = `<b>${rest.name}</b><br>${rest.number}`;
+      const popupContent = `<b>${rest.name}</b><br>${rest.number}<br> <a> Ver menú </a> <br> <a> Hacer pedido </a>`;
       const marker = L.marker([rest.location.latitude, rest.location.longitude]).addTo(this.map)
       .bindPopup(popupContent);
       this.markers.set(rest.name, marker);
