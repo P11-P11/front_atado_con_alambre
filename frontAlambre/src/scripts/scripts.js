@@ -23,7 +23,7 @@ async function addRestaurant(restaurantInput) {
         const response = await axios.post(`${BASE_URL}/restaurants`, restaurantInput, {
             headers: { 'Content-Type': 'application/json' }
         });
-        console.log('Restaurante agregado:', response.status);
+        console.log('Restaurante agregado:', response);
     } catch (error) {
         console.error('Error en addRestaurant:', error.response ? error.response.data : error.message);
     }
@@ -128,7 +128,7 @@ const restaurantInput = {
       { item: "Ensalada mixta", price: 7 },
       { item: "Empanadas", price: 4 }
     ],
-    numberOfTables: 3,
+    numberOfTables: 4,
     openingTime: "11am",
     closingTime: "11pm"
   };

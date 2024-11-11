@@ -36,11 +36,11 @@ export class PedidoFormComponent implements OnInit {
   getMenu() {
     
     const url = `${Environment.apiUrl}/restaurants/${this.idRestaurante}/menu`;
-    this.http.get<MenuItem[]>(url).subscribe(data => 
-      this.menu = data
-    )
+    this.http.get<MenuItem[]>(url).subscribe(data => {
+      this.menu = data;
+      this.orderItems = this.menu.map(item => new OrderItem(item, 0));
+    });
     
-    this.orderItems = this.menu.map(item => new OrderItem(item, 0));
   }
 
 
@@ -72,12 +72,12 @@ export class PedidoFormComponent implements OnInit {
 
       const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
       
-      this.http.post<string>(url, orderInput, {headers}).subscribe(
+      this.http.post<{id: number}>(url, orderInput, {headers}).subscribe(
         (response) => {
-          alert('Orden agregada exitosamente:');
+          alert('Orden agregada exitosamente con ID: ' + response.id);
         },
         (error) => {
-          alert('Error al agregar orden:' + error.error);
+          console.log(error);
         }
       );
       
@@ -92,11 +92,11 @@ export class PedidoFormComponent implements OnInit {
       return;
     }
     
-    const url = `${Environment.apiUrl}/${this.idRestaurante}/orders/${this.orderIdToCheck}`;
+    const url = `${Environment.apiUrl}/restaurants/${this.idRestaurante}/orders/${this.orderIdToCheck}`;
     
     this.http.get<Order>(url).subscribe(
       (response) => {
-        this.orderStatus = response.status; 
+        this.orderStatus = response.status;
       },
       (error) => {
         this.orderStatus = null;

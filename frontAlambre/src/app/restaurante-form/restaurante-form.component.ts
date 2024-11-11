@@ -50,8 +50,8 @@ export class RestauranteFormComponent {
 
   enviarRestaurante(restaurante: RestauranteInput) {
     
-    this.http.post<RestauranteInput>(Environment.apiUrl + '/restaurants', restaurante).subscribe(config => 
-      console.log(config)
+    this.http.post<{id: number}>(Environment.apiUrl + '/restaurants', restaurante).subscribe(res => 
+      alert("El id del restaurante es: " + res.id)
     );
     
   }

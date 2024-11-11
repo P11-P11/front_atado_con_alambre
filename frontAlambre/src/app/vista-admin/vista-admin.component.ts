@@ -54,8 +54,8 @@ export class VistaAdminComponent {
         console.error('Error actualizando el estado del pedido', error);
       }
     );
-  
   }
+
   getOrdersInfo() {
     
     const url = `${Environment.apiUrl}/restaurants/${this.restauranteID}/orders`;

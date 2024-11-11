@@ -1,35 +1,36 @@
-<p> VISTA ADMIN en proceso </p>
+<div class="container"> 
 
-<a style="color: red" routerLink="/admin/submit" routerLinkActive="active" ariaCurrentWhenActive="page"> Agregar un restaurante al sistema</a>
-
-<p> y aca verias EL ESTADO DE TU RESTAURANTE </p>
-<form (ngSubmit)="submitForm()" [formGroup]="restauranteIDForm">
-
-    <label for="idRestaurante">ID del restaurante:</label>
-    <input id="idRestaurante" formControlName="idRestaurante" required />+
+    <a style="color: red; padding-left: 20px; margin-top: 100px;" routerLink="/admin/submit" routerLinkActive="active" ariaCurrentWhenActive="page"> AGREGAR UN RESTAURANTE AL SISTEMA </a>
     
-    <button type="submit">Ver estado</button>
-
-</form>   
-<p> PEDIDOS ONLINE: </p>
-<div class="statusContainer">
-    @for (order of onlineOrders; track order.id) {
-        <li>
-            <item-order [datos]="order" (statusUpdated)="updateOrderStatus(restauranteID, $event.orderId, $event.newStatus)"> </item-order>
-        </li>
-    } @empty {
-        <li> Este restaurante no tiene pedidos registrados</li>
-    }
-
-</div>
-<p> PEDIDOS EN EL RESTAURANTE: </p>
-<div class="statusContainer">
-    @for (order of tableOrders; track order.id) {
-        <li>
-            <item-order [datos]="order" (statusUpdated)="updateOrderStatus(restauranteID, $event.orderId, $event.newStatus)"> </item-order>
-        </li>
-    } @empty {
-        <li> Este restaurante no tiene pedidos registrados</li>
-    }
-
+    <p> VER EL ESTADO DE UN RESTAURANTE </p>
+    <form (ngSubmit)="submitForm()" [formGroup]="restauranteIDForm">
+        
+        <label for="idRestaurante">ID del restaurante:</label>
+        <input id="idRestaurante" formControlName="idRestaurante" required />+
+        
+        <button type="submit">Ver estado</button>
+        
+    </form>   
+    <p> PEDIDOS ONLINE: </p>
+    <div class="statusContainer">
+        @for (order of onlineOrders; track order.id) {
+            <li>
+                <item-order [datos]="order" (statusUpdated)="updateOrderStatus(restauranteID, $event.orderId, $event.newStatus)"> </item-order>
+            </li>
+        } @empty {
+            <li> Este restaurante no tiene pedidos registrados</li>
+        }
+        
+    </div>
+    <p> PEDIDOS EN EL RESTAURANTE: </p>
+    <div class="statusContainer">
+        @for (order of tableOrders; track order.id) {
+            <li>
+                <item-order [datos]="order" (statusUpdated)="updateOrderStatus(restauranteID, $event.orderId, $event.newStatus)"> </item-order>
+            </li>
+        } @empty {
+            <li> Este restaurante no tiene pedidos registrados</li>
+        }
+        
+    </div>
 </div>
