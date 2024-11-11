@@ -1,0 +1,29 @@
+<div class="form-container">
+    <h2>Pedido en {{ idRestaurante }} - Mesa {{ idMesa }}</h2>
+    @for (item of menu; track $index) {
+        <div class="menu-item">
+          <div class="item-info">
+            <span class="item-name">{{ item.item }}</span>
+            <span class="item-price">$ {{ item.price }}</span>
+          </div>
+          <div class="quantity-controls">
+            <button (click)="decrement($index)">-</button>
+            <input type="number" [value]="orderItems[$index].quantity" readonly>
+            <button (click)="increment($index)">+</button>
+          </div>
+        </div>
+    }
+    <button class="submit-button" (click)="sendOrder()">Mandar Orden</button>
+
+    <div class="order-status-container">
+      <h3>Consultar Estado del Pedido</h3>
+      <input type="text" [(ngModel)]="orderIdToCheck" placeholder="Ingrese el ID del Pedido">
+      <button (click)="checkOrderStatus()">Consultar Estado</button>
+  
+      @if(orderStatus) {
+        <h4>Estado del Pedido: {{ orderStatus }}</h4>
+      }
+    
+    </div>
+  </div>
+  

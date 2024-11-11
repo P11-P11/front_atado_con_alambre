@@ -6,7 +6,7 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector: 'vista-default',
   standalone: true,
-  imports: [RouterLink, VistaUserComponent, VistaAdminComponent],
+  imports: [RouterLink],
   templateUrl: './vista-default.component.html',
   styleUrl: './vista-default.component.css'
 })

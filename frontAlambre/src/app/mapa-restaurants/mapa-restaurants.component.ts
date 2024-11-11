@@ -1,10 +1,12 @@
 import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import * as L from 'leaflet';
 import { Restaurante, RestauranteInput } from '../models/models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'mapa-restaurants',
   standalone: true,
+  imports: [],
   templateUrl: './mapa-restaurants.component.html',
   styleUrls: ['./mapa-restaurants.component.css']
 })
@@ -16,6 +18,8 @@ export class MapaRestaurantsComponent implements OnInit {
   map: any;
   markers: Map<string, L.Marker> = new Map();
 
+  constructor(private router: Router) {}
+
   ngOnInit(): void {
     // Inicializar el mapa centrado en Buenos Aires (latitud y longitud)
     
@@ -25,6 +29,8 @@ export class MapaRestaurantsComponent implements OnInit {
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(this.map);
+
+    this.mostrarRestaurantes();
 
   };
 
@@ -39,12 +45,30 @@ export class MapaRestaurantsComponent implements OnInit {
   }
 
   mostrarRestaurantes(): void {
+
+    if (this.restaurantes.length > 0) {
+
     this.restaurantes.forEach(rest => {
-      const popupContent = `<b>${rest.name}</b><br>${rest.number}<br> <a> Ver menú </a> <br> <a> Hacer pedido </a>`;
+      const popupContent = `<b>${rest.name}</b><br> <a href="javascript:void(0)" class="hacer-pedido" data-id="${rest.id}" data-table="0"> Hacer pedido </a>`;
       const marker = L.marker([rest.location.latitude, rest.location.longitude]).addTo(this.map)
       .bindPopup(popupContent);
       this.markers.set(rest.name, marker);
     });
+
+    this.map.on('popupopen', (event: any) => {
+      const popup = event.popup;
+      const hacerPedidoLink = popup.getElement().querySelector('.hacer-pedido');
+      
+      if (hacerPedidoLink) {
+        hacerPedidoLink.addEventListener('click', (e: MouseEvent) => {
+          e.preventDefault(); // Prevenir la acción por defecto
+          const restaurantId = hacerPedidoLink.getAttribute('data-id');
+          const tableNumber = hacerPedidoLink.getAttribute('data-table');
+          this.router.navigate([`/user/order/${restaurantId}`], { queryParams: { table: tableNumber } });
+        });
+      }
+    });
+  }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -60,6 +84,9 @@ export class MapaRestaurantsComponent implements OnInit {
       }
     }
     if(changes['restaurantes']) {
+      this.markers.forEach(marker => marker.remove());
+      this.markers.clear();
+      
       this.mostrarRestaurantes();
     }
   };

@@ -1,4 +1,4 @@
 export const Environment = {
-    conectadoApi: false,
+    conectadoApi: true,
     apiUrl: 'http://localhost:8080' // NO INCLUYE / AL FINAL
 };

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnChanges, SimpleChanges } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, } from '@angular/forms';
 import { Environment } from '../env/environment';
@@ -26,6 +26,13 @@ export class VistaAdminComponent {
     })
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['orders']) {
+      
+      this.sortOrders();
+    }
+  }
+
   submitForm() {
     
     this.restauranteID = this.restauranteIDForm.value.idRestaurante;
@@ -34,130 +41,39 @@ export class VistaAdminComponent {
   }
   updateOrderStatus(restaurantID: number, orderID: number, newStatus: OrderStatus) {
 
-    if(Environment.conectadoApi) {
-      const url = `${Environment.apiUrl}/restaurants/${restaurantID}/orders/${orderID}`;
-      this.http.patch(url, newStatus).subscribe(
-        () => {
-          console.log(`Status del pedido ${orderID} actualizado a ${newStatus}`);
-          this.getOrdersInfo(); // Opcional: recarga los pedidos después de la actualización
-        });
-    } else {
-
-      console.log("Aca le pegaría a la api para actualizar el estado y volver a recargar la lista");
-    }
+    const url = `${Environment.apiUrl}/restaurants/${restaurantID}/orders/${orderID}`;
+    const body = newStatus;
+    const headers = { 'Content-Type': 'application/json' };
+    
+    this.http.patch(url, body, { headers }).subscribe(
+      () => {
+        console.log(`Status del pedido ${orderID} actualizado a ${newStatus}`);
+        this.getOrdersInfo(); 
+      },
+      error => {
+        console.error('Error actualizando el estado del pedido', error);
+      }
+    );
   
   }
   getOrdersInfo() {
-    if(Environment.conectadoApi) {
-      const url = `${Environment.apiUrl}/restaurants/${this.restauranteID}/orders`;
-      this.http.get<Order[]>(url).subscribe(data => {
-          this.orders = data;
-          console.log('Orders fetched:', this.orders);
-        }
-      );
-    } else {
-      
-      console.log("Acá cargo la lista");
-      this.orders = [{
-        "id": 3,
-        "items": [
-          {
-          "menuItem": {
-            "item": "pisa",
-            "price": 4
-          },
-          "quantity": 2,
-        }
-        ],
-        "status": OrderStatus.ACCEPTED,
-        "tableNumber": 8, 
-      }, 
-      {
-        "id": 4,
-        "items": [
-        {
-          "menuItem": {
-            "item": "galletitas",
-            "price": 1
-          },
-          "quantity": 6,
-        }
-        ],
-        "status": OrderStatus.READY_TO_BE_SERVED,
-        "tableNumber": 0, 
-      },
-      {
-        "id": 5,
-        "items": [
-        {
-          "menuItem": {
-            "item": "galletitas",
-            "price": 1
-          },
-          "quantity": 6,
-        }
-        ],
-        "status": OrderStatus.READY_TO_BE_SERVED,
-        "tableNumber": 6, 
-      },
-      {
-        "id": 6,
-        "items": [
-        {
-          "menuItem": {
-            "item": "galletitas",
-            "price": 1
-          },
-          "quantity": 6,
-        }
-        ],
-        "status": OrderStatus.READY_TO_BE_SERVED,
-        "tableNumber": 0, 
-      },
-      {
-        "id": 7,
-        "items": [
-        {
-          "menuItem": {
-            "item": "galletitas",
-            "price": 1
-          },
-          "quantity": 6,
-        }
-        ],
-        "status": OrderStatus.READY_TO_BE_SERVED,
-        "tableNumber": 6, 
-      },
-      {
-        "id": 8,
-        "items": [
-        {
-          "menuItem": {
-            "item": "fideos",
-            "price": 2
-          },
-          "quantity": 2,
-        },
-        {
-          "menuItem": {
-            "item": "coca",
-            "price": 3
-          },
-          "quantity": 4,
-        }
-        ],
-        "status": OrderStatus.IN_PREPARATION,
-        "tableNumber": 0, 
+    
+    const url = `${Environment.apiUrl}/restaurants/${this.restauranteID}/orders`;
+    this.http.get<Order[]>(url).subscribe(data => {
+        this.orders = data;
+        console.log('Orders fetched:', this.orders);
+        this.sortOrders();
       }
-    ]
-
-    }
-    this.sortOrders();
+    );
+    
   }
 
   sortOrders() {
     this.onlineOrders = this.orders.filter(order => order.tableNumber == 0);
     this.tableOrders = this.orders.filter(order => order.tableNumber != 0);
+
+    console.log(this.onlineOrders);
+    console.log(this.tableOrders);
   }
 
   

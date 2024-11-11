@@ -39,7 +39,8 @@ export class RestauranteFormComponent {
       this.parseMenu(formValue.menu),
       formValue.numberOfTables
     );
-    console.log(newRestaurante); // Luego, manda este objeto a la API
+    console.log("NUEVO", newRestaurante); // Luego, manda este objeto a la API
+    console.log(this.parseMenu(formValue.menu));
     this.enviarRestaurante(newRestaurante);
     setTimeout(() => {
       this.router.navigate(['/admin']);
@@ -48,11 +49,11 @@ export class RestauranteFormComponent {
   }
 
   enviarRestaurante(restaurante: RestauranteInput) {
-    if(Environment.conectadoApi) {
-      this.http.post<RestauranteInput>(Environment.apiUrl + '/restaurants', restaurante).subscribe(config => 
-        console.log(config)
-      );
-    }
+    
+    this.http.post<RestauranteInput>(Environment.apiUrl + '/restaurants', restaurante).subscribe(config => 
+      console.log(config)
+    );
+    
   }
 
   parseLocation(locationString: string): Coordinate {
@@ -61,9 +62,13 @@ export class RestauranteFormComponent {
   }
 
   parseMenu(menuString: string): MenuItem[] {
-    return menuString.split('},{').map(item => {
-      const [name, price] = item.replace(/[{}]/g, '').split(',');
-      return new MenuItem(name.trim(), parseFloat(price.trim()));
+    // Primero, eliminar los corchetes al principio y al final
+    menuString = menuString.replace(/^\{|\}$/g, '');
+  
+    // Luego, dividir la cadena por las comas que separan los items
+    return menuString.split('}, {').map(item => {
+      const [name, price] = item.split(',');  // Separar el nombre del precio
+      return new MenuItem(name.trim(), parseFloat(price.trim()));  // Crear los objetos MenuItem
     });
   }
 }

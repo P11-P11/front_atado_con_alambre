@@ -27,14 +27,12 @@ export class VistaUserComponent {
   }
 
   buscarRestaurantes(): void {
-    if(Environment.conectadoApi) {
-      const url = `${Environment.apiUrl}/restaurants`;
-      this.http.get<Restaurante[]>(url).subscribe(data =>
-        this.restaurantes = data
-      );
-    } else {
-      this.restaurantes = exampleRestaurantes;
-    }  
+   
+    const url = `${Environment.apiUrl}/restaurants`;
+    this.http.get<Restaurante[]>(url).subscribe(data =>
+      this.restaurantes = data
+    );
+     
   }
 
   buscarRestaurantesCercanos(): void {
@@ -42,12 +40,12 @@ export class VistaUserComponent {
     navigator.geolocation.getCurrentPosition(position => {
       const lat = position.coords.latitude;
       const lon = position.coords.longitude;
-      if(Environment.conectadoApi) {
-        const url = `${Environment.apiUrl}/restaurants?latitude=${lat}&longitude=${lon}`;
-        this.http.get<Restaurante[]>(url).subscribe(data =>
-          this.restaurantes = data
-        );
-      }
+      
+      const url = `${Environment.apiUrl}/restaurants?latitude=${lat}&longitude=${lon}`;
+      this.http.get<Restaurante[]>(url).subscribe(data =>
+        this.restaurantes = data
+      );
+      
     }, () => {
       alert('No se pudo obtener la ubicación.');
     });
