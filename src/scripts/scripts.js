@@ -1,7 +1,7 @@
 const axios = require('axios');
 
-// const BASE_URL = 'https://alambre-5fd9d904972d.herokuapp.com'; // Cambia esta URL según tu configuración
-const BASE_URL = 'http://localhost:8080';
+const BASE_URL = 'https://alambre-5fd9d904972d.herokuapp.com'; // Cambia esta URL según tu configuración
+// const BASE_URL = 'http://localhost:8080';
 
 // 1. GET /restaurants con parámetros opcionales
 async function getRestaurants(latitude = null, longitude = null) {

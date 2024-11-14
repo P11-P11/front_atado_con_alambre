@@ -24,7 +24,9 @@ export class RestauranteFormComponent {
       images: [''],
       logoUrl: [''],
       menu: [''],
-      numberOfTables: ['']
+      numberOfTables: [''],
+      openingTime: [''],
+      closingTime: ['']
     });
   }
 
@@ -37,7 +39,9 @@ export class RestauranteFormComponent {
       formValue.logoUrl,
       formValue.images.split(','), // Convierte la cadena en un array
       this.parseMenu(formValue.menu),
-      Number(formValue.numberOfTables)
+      Number(formValue.numberOfTables),
+      formValue.openingTime,
+      formValue.closingTime
     );
     this.enviarRestaurante(newRestaurante);
     console.log(newRestaurante);

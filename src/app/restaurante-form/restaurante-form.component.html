@@ -10,7 +10,7 @@
         <label for="location">Coordenadas (separadas por comas):</label>
         <input id="location" formControlName="location" required />
     
-        <label for="logoUrl">URLs de imagen de logo:</label>
+        <label for="logoUrl">URL de imagen de logo:</label>
         <input id="logoUrl" formControlName="logoUrl" required />
 
         <label for="images">URLs de Imágenes (separadas por comas):</label>
@@ -21,7 +21,13 @@
     
         <label for="numberOfTables">Cantidad de Mesas:</label>
         <input id="numberOfTables" formControlName="numberOfTables" required />
+        
+        <label for="openingTime">Hora de apertura:</label>
+        <input id="openingTime" formControlName="openingTime" required />
     
+        <label for="closingTime">Hora de cierre:</label>
+        <input id="closingTime" formControlName="closingTime" required />
+
         <button type="submit">Agregar Restaurante</button>
     </form>
 </div>

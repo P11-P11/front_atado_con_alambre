@@ -12,7 +12,10 @@ export class RestauranteInput {
 
         public menu: MenuItem[],
 
-        public numberOfTables: number
+        public numberOfTables: number,
+
+        public openingTime: string,
+        public closingTime: string
     ) {}
 }
 
