@@ -37,9 +37,10 @@ export class RestauranteFormComponent {
       formValue.logoUrl,
       formValue.images.split(','), // Convierte la cadena en un array
       this.parseMenu(formValue.menu),
-      formValue.numberOfTables
+      Number(formValue.numberOfTables)
     );
     this.enviarRestaurante(newRestaurante);
+    console.log(newRestaurante);
     setTimeout(() => {
       this.router.navigate(['/admin']);
     }, 500);

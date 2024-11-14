@@ -116,7 +116,7 @@ async function updateOrderStatus(restaurantID, orderID, newStatus) {
 
 // Ejemplos de uso
 const restaurantInput = {
-    name: "Parrilla El Porteño",
+    name: "pepito",
     number: "1029384",
     location: {
       latitude: -34.6037,
