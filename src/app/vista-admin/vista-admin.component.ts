@@ -30,30 +30,59 @@ export class VistaAdminComponent {
     });
   }
 
+  ngOnInit(): void {
+    // Escucha cambios en mesaControl
+    this.mesaControl.valueChanges.subscribe((mesaNumber) => {
+      console.log("cambio nro de mesa");
+      this.updateCodigoQRSeleccionado(mesaNumber);
+    });
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['orders']) {
       this.sortOrders();
     }
   }
 
+  updateCodigoQRSeleccionado(mesaNumber: number) {
+    if (mesaNumber >= 0) {
+      const url = `${Environment.apiUrl}/restaurants/${this.restauranteID}/qrs/${mesaNumber}`;
+      this.http.get(url, { responseType: 'blob' }).subscribe(
+        (data) => {
+          this.codigoQRSeleccionado = URL.createObjectURL(data);
+          console.log(this.codigoQRSeleccionado);
+        },
+        (error) => {
+          console.error('Error al obtener el código QR:', error);
+          this.codigoQRSeleccionado = null;
+        }
+      );
+    } else {
+      this.codigoQRSeleccionado = null;
+    }
+  }
+
   selectCodigoQR() {
     const mesaNumber = this.mesaControl.value;
+    this.updateCodigoQRSeleccionado(mesaNumber);
+    /*
     if (mesaNumber >= 0 && mesaNumber < this.codigos.length) {
       this.codigoQRSeleccionado = Environment.apiUrl + this.codigos[mesaNumber - 1];
     } else {
       this.codigoQRSeleccionado = null;
     }
+      */
   }
 
   submitForm() {
     
     this.restauranteID = this.restauranteIDForm.value.idRestaurante;
     this.getOrdersInfo();
-    const url = `${Environment.apiUrl}/restaurants/${this.restauranteID}/qrs`;
+    /* const url = `${Environment.apiUrl}/restaurants/${this.restauranteID}/qrs/`;
       this.http.get<String[]>(url).subscribe(data => {
         this.codigos = data;
       });
-    
+    */
   }
   updateOrderStatus(restaurantID: number, orderID: number, newStatus: OrderStatus) {
 

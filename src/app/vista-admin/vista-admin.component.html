@@ -41,7 +41,8 @@
         <!-- Mostrar el código QR si está seleccionado -->
         @if(codigoQRSeleccionado) {
             <p>Código QR para la mesa {{ mesaControl.value }}:</p>
-            <img [src]="codigoQRSeleccionado" alt="Código QR" />
+            <img [src]="codigoQRSeleccionado" alt="Código QR" style="height: 400px;"/>
+
         }
     }
 
