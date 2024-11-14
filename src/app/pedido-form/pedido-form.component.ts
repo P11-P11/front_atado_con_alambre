@@ -56,7 +56,6 @@ export class PedidoFormComponent implements OnInit {
 
   sendOrder(): void {
     const itemsWithQuantity = this.orderItems.filter(item => item.quantity > 0);
-    console.log("Orden enviada:", itemsWithQuantity);
 
     navigator.geolocation.getCurrentPosition(position => {
       const lat = position.coords.latitude;

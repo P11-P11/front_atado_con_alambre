@@ -33,4 +33,17 @@
         }
         
     </div>
+
+    @if(restauranteID) {
+        <label for="numeroMesa">Número de mesa:</label>
+        <input id="numeroMesa" [formControl]="mesaControl" type="number" (input)="selectCodigoQR()" />
+    
+        <!-- Mostrar el código QR si está seleccionado -->
+        @if(codigoQRSeleccionado) {
+            <p>Código QR para la mesa {{ mesaControl.value }}:</p>
+            <img [src]="codigoQRSeleccionado" alt="Código QR" />
+        }
+    }
+
+    
 </div>

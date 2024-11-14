@@ -39,8 +39,6 @@ export class RestauranteFormComponent {
       this.parseMenu(formValue.menu),
       formValue.numberOfTables
     );
-    console.log("NUEVO", newRestaurante); // Luego, manda este objeto a la API
-    console.log(this.parseMenu(formValue.menu));
     this.enviarRestaurante(newRestaurante);
     setTimeout(() => {
       this.router.navigate(['/admin']);

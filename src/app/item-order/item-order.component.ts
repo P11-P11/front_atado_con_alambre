@@ -25,7 +25,6 @@ export class ItemOrderComponent {
   updateStatus() {
     
        
-    console.log(`Actualizando el pedido ${this.datos.id} al estado: ${this.selectedStatus}`);
     this.statusUpdated.emit({"orderId": this.datos.id, "newStatus": this.selectedStatus});
   }
 }
