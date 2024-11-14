@@ -1,5 +1,5 @@
 import { Restaurante, RestauranteInput, OrderStatus } from "./models";
-
+/*
 export const exampleRestaurantesInput: RestauranteInput[] = [
     {
       name: "Parrilla El Porteño",
@@ -242,7 +242,7 @@ export const exampleRestaurantesInput: RestauranteInput[] = [
       numberOfTables: 27
     }
   ];
-
+*/
 export const exampleRestaurantes: Restaurante[] = [
   {
     id: 1,

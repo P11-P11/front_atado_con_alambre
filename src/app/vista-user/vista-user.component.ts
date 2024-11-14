@@ -2,7 +2,7 @@ import { Component, ViewChild, Injectable } from '@angular/core';
 import { MapaRestaurantsComponent } from '../mapa-restaurants/mapa-restaurants.component';
 import { ItemRestaurantComponent } from '../item-restaurant/item-restaurant.component';
 import { Restaurante, RestauranteInput } from '../models/models';
-import { exampleRestaurantes, exampleRestaurantesInput } from '../models/examples';
+import { exampleRestaurantes } from '../models/examples';
 import { Environment } from '../env/environment';
 import { HttpClient } from '@angular/common/http';
 
