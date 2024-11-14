@@ -64,7 +64,7 @@ export class PedidoFormComponent implements OnInit {
       const orderInput: OrderInput = {
         tableNumber: Number(this.idMesa), 
         userLocation: {latitude: lat, longitude: lon}, 
-        items: this.orderItems
+        items: itemsWithQuantity
       };
       
       const url = `${Environment.apiUrl}/restaurants/${this.idRestaurante}/orders`;
@@ -76,7 +76,7 @@ export class PedidoFormComponent implements OnInit {
           alert('Orden agregada exitosamente con ID: ' + response.id);
         },
         (error) => {
-          console.log(error);
+          alert('Orden no creada. Hubo un error o se encuentra fuera de rango');
         }
       );
       
