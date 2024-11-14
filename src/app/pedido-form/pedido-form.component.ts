@@ -70,7 +70,6 @@ export class PedidoFormComponent implements OnInit {
       const url = `${Environment.apiUrl}/restaurants/${this.idRestaurante}/orders`;
 
       const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-      
       this.http.post<{id: number}>(url, orderInput, {headers}).subscribe(
         (response) => {
           alert('Orden agregada exitosamente con ID: ' + response.id);
